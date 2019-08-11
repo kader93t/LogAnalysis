@@ -42,18 +42,15 @@ def getDay():
     db=psycopg2.connect(database = dbName)
     c=db.cursor()
     c.execute('''
-                select er.* from (select date,
-                    round(cast((cast(err as float) * 100.0 ) /
-                    cast(total as float) as decimal ),2)
+                select er.* from (select date, round(cast((cast(err as float) * 100.0 ) / cast(total as float) as decimal ),2)
                     as percentage
-                    from (select errTable.date, total, err
-                        from (select date(time) as date, count(*) as err
-                            from log
-                                where log.status like '%404%' group by date) as errTable ,
-
-                        (select date(time) as date, count(*) as total
-                        from log group by date) as totalTable where totalTable.date=errTable.date) as tab) as
-                        er where percentage >1.0; ''')
+				    from (select errTable.date, total, err
+					  from (select date(time) as date, count(*) as err
+					        from log
+						    where log.status like '%404%' group by date) as errTable ,
+					(select date(time) as date, count(*) as total
+					from log group by date) as totalTable where totalTable.date=errTable.date) as tab) as
+					er where percentage >1.0; ''')
     day = c.fetchall()
     printOutput(day, "%")
     db.close()
