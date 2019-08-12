@@ -1,9 +1,6 @@
 
-<<<<<<< HEAD
-gAnalysis Project 
-=======
 # LogAnalysis Project 
->>>>>>> 5abe1c0cf69bcce466b08df36123680aa0602275
+
  This project is the first project of the Full Stack Web Developer Nanodegree of Udacity, this project aims to do some statistic to extract information from our databases.
 # Questions that this project can answer to it 
 
